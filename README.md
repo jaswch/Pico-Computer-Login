@@ -36,3 +36,6 @@ The connections are:
 15. GND------------------------------GND
 16. VCC------------------------------VBUS
 
+![Alt text](circuit.jpg)
+![Alt text](RFID_tag_reading.jpg)
+![Alt text](out.jpg)
