@@ -6,7 +6,16 @@ an RFID tag. It uses a third-party hid library compiled into the
 the RFID reader and I2c LCD display. And use the firmware above to create this 
 project. There is a github issue for the usb hid support [usb hid support for micropython](https://github.com/micropython/micropython/issues/6811).
 And this forum which helped me alot to create this project [here](https://forums.raspberrypi.com//viewtopic.php?p=1866070#p1866070).
-I got the Libraries from these links: [LCD](https://www.tomshardware.com/how-to/lcd-display-raspberry-pi-pico) and [RFID](https://gist.github.com/idriszmy/9fa14377eb3b5a1859e1ff4f41464900#file-mfrc522-py). If you want to modify this code to type in your password go to this [link](http://www.freebsddiary.org/APC/usb_hid_usages.php) and check the keykode code. First run the ```mfrc522_read.py``` to read and know your rfid tags uid and then change it in the ```main.py```. 
+I got the Libraries from these links: [LCD](https://www.tomshardware.com/how-to/lcd-display-raspberry-pi-pico) and [RFID](https://gist.github.com/idriszmy/9fa14377eb3b5a1859e1ff4f41464900#file-mfrc522-py). If you want to modify this code to type in your password go to this [link](http://www.freebsddiary.org/APC/usb_hid_usages.php) and check the keykode code. First run the ```mfrc522_read.py``` to read and know your rfid tags uid and then change it in the ```main.py```. To change the uid in ```main.py``` on line 34 ```if card == 3050636775: # change this with the uid of your tag``` change the uid. And to make a key board press these lines are used:
+```
+report[3] = 0x04 # register 'a' keycode
+usb_hid.report(usb_hid.KEYBOARD, report) # send event
+time.sleep(0.1)
+report[3] = 0x00 # unregister 'a' keycode
+usb_hid.report(usb_hid.KEYBOARD, report) # send event
+```
+In the first two lines it is simulating the key press of the letter 'a' then a delay of 0.1 seconds (100 miliseconds) then in the last two lines the key is released. To change the keycode just change the value of ```report[3]``` with something else in the above code.
+
 
 # Circuit
 The connections are:
@@ -26,3 +35,4 @@ The connections are:
 14. SCK------------------------------GP21
 15. GND------------------------------GND
 16. VCC------------------------------VBUS
+
