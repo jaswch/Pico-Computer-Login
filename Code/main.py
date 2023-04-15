@@ -7,7 +7,7 @@ from machine import I2C, Pin
 from time import sleep
 from pico_i2c_lcd import I2cLcd
 
-# create an array
+# create an array for the keycodes
 report = bytearray(8)
 
 # create a reader object for the RFID reader
@@ -42,10 +42,10 @@ while True:
                 usb_hid.report(usb_hid.KEYBOARD, report) # send event
                 time.sleep(0.1)
                 
-                report[3] = 0x19 # register 'V' keycode
+                report[3] = 0x0D # register 'J' keycode
                 usb_hid.report(usb_hid.KEYBOARD, report) # send event
                 time.sleep(0.1)
-                report[3] = 0x00 # unregister 'V' keycode
+                report[3] = 0x00 # unregister 'J' keycode
                 usb_hid.report(usb_hid.KEYBOARD, report) # send event
                 
                 time.sleep(0.1)
