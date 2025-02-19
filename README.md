@@ -36,6 +36,13 @@ The connections are:
 15. GND------------------------------GND
 16. VCC------------------------------VBUS
 
+# Installation
+1. After making the circuit, plug in you RPI pico into your computer while pressing the boot key.
+2. When your computer recognises it as an external drive copy the```firmware-blank.uf2``` onto your RPI pico which has a library for usb hid support
+3. Save the code on the RPI pico using the thonny ide
+
+# Images
+
 ![Alt text](circuit.jpg)
 ![Alt text](RFID_tag_reading.jpg)
 ![Alt text](out.jpg)
